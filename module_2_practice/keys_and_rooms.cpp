@@ -1,13 +1,11 @@
+// https://leetcode.com/problems/keys-and-rooms/description/
 #include <bits/stdc++.h>;
 using namespace std;
 
 vector<vector<int>> adj_list(1005);
 vector<bool> visit(1005, false);
 
-// TC: O(N+E); or O(V+E)
-// SC: O(N); or O(E)
-// V means number of vertices, and e is the number of edges
-void bfs(int src)
+void BFS(int src)
 {
     queue<int> q;
     q.push(src);
@@ -36,28 +34,6 @@ void bfs(int src)
 
 int main()
 {
-    int n, e;
-    cin >> n >> e;
-    // Getting input using adjacency list
-    while (e--)
-    {
-        int a, b;
-        cin >> a >> b;
-        adj_list[a].push_back(b);
-        adj_list[b].push_back(a);
-    }
-
-    // Output all
-    // for (vector<int> v : adj_list)
-    // {
-    //     for (int val : v)
-    //     {
-    //         cout << val << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    bfs(0);
 
     return 0;
 }

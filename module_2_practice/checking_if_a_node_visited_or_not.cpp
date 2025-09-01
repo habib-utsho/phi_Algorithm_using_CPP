@@ -57,7 +57,15 @@ int main()
     //     cout << endl;
     // }
 
-    bfs(0);
+    int src, dest;
+    cin >> src >> dest;
+
+    bfs(src);
+    cout << endl;
+    if (visit[dest])
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
 
     return 0;
 }

@@ -3,6 +3,7 @@ using namespace std;
 
 vector<vector<int>> adj_list(1005);
 vector<bool> visit(1005, false);
+vector<int> level(1005, -1);
 
 // TC: O(N+E); or O(V+E)
 // SC: O(N); or O(E)
@@ -12,6 +13,7 @@ void bfs(int src)
     queue<int> q;
     q.push(src);
     visit[src] = true;
+    level[src] = 0;
     while (!q.empty()) // TC: O(N): or O(V)
     {
         // Taking front
@@ -29,6 +31,7 @@ void bfs(int src)
             {
                 visit[child] = true;
                 q.push(child);
+                level[child] = level[par] + 1;
             }
         }
     }
@@ -57,7 +60,12 @@ int main()
     //     cout << endl;
     // }
 
-    bfs(0);
+    int src, dest;
+    cin >> src >> dest;
+
+    bfs(src);
+    cout << endl;
+    cout << level[dest] << endl;
 
     return 0;
 }
