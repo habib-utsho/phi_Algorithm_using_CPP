@@ -10,6 +10,7 @@ void BFS(int src)
     queue<int> q;
     q.push(src);
     visit[src] = true;
+
     while (!q.empty()) // TC: O(N): or O(V)
     {
         // Taking front
@@ -17,12 +18,12 @@ void BFS(int src)
         q.pop();
 
         // work with target
-        cout << par << " ";
+        // cout << par << " ";
 
         // Children push
         for (int child : adj_list[par]) // TC: O(E) ; E means edge
         {
-            // cout << child << " ";
+            // cout << "child: " << child << " ";
             if (!visit[child])
             {
                 visit[child] = true;
@@ -34,6 +35,36 @@ void BFS(int src)
 
 int main()
 {
+    int n, e;
+    cin >> n >> e;
+    for (int i = 0; i < e; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
+    }
+
+    BFS(0);
+    // cout << endl;
+
+    bool allUnlocked = true;
+    for (int i = 0; i < e; i++)
+    {
+        if (!visit[i])
+        {
+            allUnlocked = false;
+            break;
+        }
+        // cout << i << ": " << visit[i] << " ";
+
+        // cout << endl;
+    }
+
+    if (allUnlocked)
+        cout << "true" << endl;
+    else
+        cout << "false" << endl;
 
     return 0;
 }
