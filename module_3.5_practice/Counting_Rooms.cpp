@@ -21,11 +21,9 @@ bool valid(int i, int j)
     return true;
 }
 
-int totalDot = 0;
 void DFS(int si, int sj)
 {
-    if (grid[si][sj] == '.' && !visited[si][sj])
-        totalDot++;
+
     // cout << si << " " << sj << " :" << grid[si][sj] << endl;
     visited[si][sj] = true;
 
@@ -34,7 +32,7 @@ void DFS(int si, int sj)
         int ci = si + directions[i].first;
         int cj = sj + directions[i].second;
 
-        if (!visited[ci][cj] && valid(ci, cj))
+        if (!visited[ci][cj] && valid(ci, cj) && grid[ci][cj] == '.')
             DFS(ci, cj);
     }
 }
@@ -47,11 +45,22 @@ int main()
         for (int j = 0; j < c; j++)
             cin >> grid[i][j];
 
-    DFS(0, 1);
-
-    int totalRoom = totalDot / 4;
     // cout << "Total dot count: " << totalDot << endl;
     // cout << "Total room: " << totalRoom << endl;
+
+    int totalRoom = 0;
+    for (int i = 0; i < r; i++)
+    {
+
+        for (int j = 0; j < c; j++)
+        {
+            if (grid[i][j] == '.' && !visited[i][j])
+            {
+                totalRoom++;
+                DFS(i, j);
+            }
+        }
+    }
 
     cout << totalRoom << endl;
 
