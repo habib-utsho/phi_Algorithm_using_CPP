@@ -5,7 +5,7 @@ using namespace std;
 vector<vector<int>> adj_list(1005);
 vector<bool> visit(1005, false);
 
-void BFS(int src)
+void DFS(int src)
 {
     queue<int> q;
     q.push(src);
@@ -45,7 +45,7 @@ int main()
         adj_list[b].push_back(a);
     }
 
-    BFS(0);
+    DFS(0);
     // cout << endl;
 
     bool allUnlocked = true;

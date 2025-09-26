@@ -1,1 +1,5 @@
 An algorithm is a procedure used for solving a problem or performing a computation. 
+
+
+Cycle detection:
+  1. Undirected graph e 2 ta node er moddhe cycle detection count korina. at least 3 ta hote hobe. Directed graph e 2 ta holei hobe.
