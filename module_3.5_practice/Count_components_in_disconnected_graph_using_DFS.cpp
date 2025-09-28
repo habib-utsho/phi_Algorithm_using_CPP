@@ -4,13 +4,13 @@ using namespace std;
 bool visited[1005];
 vector<int> adj_list[1005];
 
-void DFS(int src)
+void BFS(int src)
 {
     // cout << src << " ";
     visited[src] = true;
     for (int child : adj_list[src])
         if (!visited[child])
-            DFS(child);
+            BFS(child);
 }
 
 int main()
@@ -33,7 +33,7 @@ int main()
         if (!visited[i])
         {
             totalCompo++;
-            DFS(i);
+            BFS(i);
             cout << endl;
         }
     }

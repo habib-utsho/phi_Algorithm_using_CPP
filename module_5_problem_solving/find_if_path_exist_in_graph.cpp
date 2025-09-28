@@ -7,14 +7,14 @@ int n, e, source, dest;
 vector<vector<int>> adj_list(200005);
 bool visited[200005];
 
-void DFS(int src)
+void BFS(int src)
 {
     visited[src] = true;
     for (int child : adj_list[src])
     {
         if (!visited[child])
         {
-            DFS(child);
+            BFS(child);
         }
     }
 }
@@ -42,7 +42,7 @@ int main()
     // }
 
     memset(visited, false, sizeof(visited));
-    DFS(source);
+    BFS(source);
 
     if (visited[dest])
         cout << "true";

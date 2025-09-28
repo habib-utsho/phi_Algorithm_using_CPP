@@ -4,7 +4,7 @@ using namespace std;
 vector<vector<int>> adj_list(1005);
 vector<bool> visited(1005);
 
-void DFS(int src) //TC: O(V+E)
+void BFS(int src) // TC: O(V+E)
 {
 
     cout << src << " ";
@@ -12,7 +12,7 @@ void DFS(int src) //TC: O(V+E)
 
     for (int child : adj_list[src])
         if (!visited[child])
-            DFS(child);
+            BFS(child);
 }
 
 int main()
@@ -28,7 +28,7 @@ int main()
         adj_list[b].push_back(a);
     }
 
-    DFS(0);
+    BFS(0);
 
     // for (int i = 0; i < 7; i++)
     // {

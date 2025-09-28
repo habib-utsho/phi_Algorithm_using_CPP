@@ -7,7 +7,7 @@ vector<vector<int>> adj_list(105);
 int parent[105];
 bool cycle;
 
-void DFS(int src)
+void BFS(int src)
 {
     vis[src] = true;
 
@@ -19,8 +19,8 @@ void DFS(int src)
         }
         else if (!vis[child])
         {
-            parent[child] = src; 
-            DFS(child);
+            parent[child] = src;
+            BFS(child);
         }
     }
 }
@@ -43,7 +43,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         if (!vis[i])
-            DFS(i);
+            BFS(i);
     }
 
     for (int i = 0; i < n; i++)

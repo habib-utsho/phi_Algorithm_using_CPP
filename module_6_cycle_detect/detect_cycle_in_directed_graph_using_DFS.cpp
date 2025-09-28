@@ -4,34 +4,27 @@ using namespace std;
 int vis[105];
 
 vector<vector<int>> adj_list(105);
-int parent[105];
+bool pathVis[105];
 bool cycle;
 
 void BFS(int src)
 {
-    queue<int> q;
-    q.push(src);
     vis[src] = true;
+    pathVis[src] = true;
 
-    while (!q.empty())
+    for (int child : adj_list[src])
     {
-        int par = q.front();
-        q.pop();
-
-        for (int child : adj_list[par])
+        if (vis[child] && pathVis[child])
         {
-            if (vis[child] && child != parent[par])
-            {
-                cycle = true;
-            }
-            else if (!vis[child])
-            {
-                q.push(child);
-                vis[child] = true;
-                parent[child] = par;
-            }
+            cycle = true;
+        }
+        else if (!vis[child])
+        {
+            BFS(child);
         }
     }
+
+    pathVis[src] = false; // When backward the recursion then should path visit false
 }
 
 int main()
@@ -43,10 +36,9 @@ int main()
         int a, b;
         cin >> a >> b;
         adj_list[a].push_back(b);
-        adj_list[b].push_back(a);
     }
     memset(vis, false, sizeof(vis));
-    memset(parent, -1, sizeof(parent));
+    memset(pathVis, false, sizeof(pathVis));
     cycle = false;
 
     for (int i = 0; i < n; i++)

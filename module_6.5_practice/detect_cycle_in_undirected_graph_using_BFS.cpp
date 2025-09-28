@@ -1,22 +1,25 @@
+// https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
 #include <bits/stdc++.h>;
 using namespace std;
-
-int vis[105];
-
-vector<vector<int>> adj_list(105);
-int parent[105];
+int v, e;
+vector<vector<int>> adj_list(100005);
+int vis[100005];
+int parent[100005];
 bool cycle;
 
 void BFS(int src)
 {
+    vis[src] = true;
+
     queue<int> q;
     q.push(src);
-    vis[src] = true;
 
     while (!q.empty())
     {
         int par = q.front();
         q.pop();
+
+        // cout << par << " ";
 
         for (int child : adj_list[par])
         {
@@ -24,7 +27,7 @@ void BFS(int src)
             {
                 cycle = true;
             }
-            else if (!vis[child])
+            if (!vis[child])
             {
                 q.push(child);
                 vis[child] = true;
@@ -36,8 +39,8 @@ void BFS(int src)
 
 int main()
 {
-    int n, e;
-    cin >> n >> e;
+
+    cin >> v >> e;
     while (e--)
     {
         int a, b;
@@ -45,20 +48,19 @@ int main()
         adj_list[a].push_back(b);
         adj_list[b].push_back(a);
     }
+
     memset(vis, false, sizeof(vis));
     memset(parent, -1, sizeof(parent));
+
     cycle = false;
 
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i <= v; i++)
         if (!vis[i])
             BFS(i);
-    }
 
     if (cycle)
-        cout << "cycle detected";
+        cout << "Cycle detected";
     else
-        cout << "cycle not detected";
-
+        cout << "Cycle not detected";
     return 0;
 }
