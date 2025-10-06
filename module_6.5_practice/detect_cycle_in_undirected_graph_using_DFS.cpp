@@ -14,8 +14,8 @@ void DFS(int src)
     for (int child : adj_list[src])
     {
         if (vis[child])
-            if (vis[child] && child != parent[src])
-                cycle = true;
+        if (vis[child] && child != parent[src])
+            cycle = true;
         if (!vis[child])
         {
             parent[child] = src;
@@ -33,6 +33,7 @@ int main()
         int a, b;
         cin >> a >> b;
         adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
     }
 
     memset(vis, false, sizeof(vis));

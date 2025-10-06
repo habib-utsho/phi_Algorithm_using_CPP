@@ -7,7 +7,7 @@ vector<vector<int>> adj_list(105);
 bool pathVis[105];
 bool cycle;
 
-void BFS(int src)
+void DFS(int src)
 {
     vis[src] = true;
     pathVis[src] = true;
@@ -20,7 +20,7 @@ void BFS(int src)
         }
         else if (!vis[child])
         {
-            BFS(child);
+            DFS(child);
         }
     }
 
@@ -44,7 +44,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         if (!vis[i])
-            BFS(i);
+            DFS(i);
     }
 
     if (cycle)
