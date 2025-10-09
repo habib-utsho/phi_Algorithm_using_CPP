@@ -4,7 +4,8 @@
 using namespace std;
 
 int numCourses, e;
-vector<vector<int>> adj_list(2005);
+// vector<vector<int>> adj_list(2005);
+vector<int> adj_list[200005];
 bool cycle;
 bool vis[2005];
 bool pathVis[2005];
@@ -22,7 +23,7 @@ void DFS(int src)
             DFS(child);
     }
 
-    pathVis[src] = false; // When backward the recursion then should path visit false
+    pathVis[src] = false;
 }
 
 int main()
@@ -39,23 +40,23 @@ int main()
     memset(vis, false, sizeof(vis));
     memset(pathVis, false, sizeof(pathVis));
 
-    for (int i = 0; i < numCourses; i++)
-    {
-        cout << i << " : ";
-        for (int val : adj_list[i])
-        {
-            cout << val << " ";
-        }
-        cout << endl;
-    }
+    // for (int i = 0; i < numCourses; i++)
+    // {
+    //     cout << i << " : ";
+    //     for (int val : adj_list[i])
+    //     {
+    //         cout << val << " ";
+    //     }
+    //     cout << endl;
+    // }
 
     for (int i = 0; i < numCourses; i++)
         if (!vis[i])
             DFS(i);
 
     if (cycle)
-        cout << "Cycle detected";
+        cout << "Cycle detected - false";
     else
-        cout << "Cycle not detected";
+        cout << "Cycle not detected - true";
     return 0;
 }
