@@ -10,73 +10,32 @@ int main()
     {
         int size;
         cin >> size;
-        vector<int> arr;
+        int arr[size];
 
-        int minVal = INT_MAX;
-        int maxVal = INT_MIN;
         for (int i = 0; i < size; i++)
-        {
-            int val;
-            cin >> val;
-            if (val < minVal)
-                minVal = val;
-            if (val > maxVal)
-                maxVal = val;
-            arr.push_back(val);
-        }
-        sort(arr.begin(), arr.end());
-        // for (int i = 0; i < size; i++)
-        // {
-        //     cout << " " << arr[i];
-        // }
+            cin >> arr[i];
+        sort(arr, arr + size);
+        int minVal = arr[0];
+        int maxVal = arr[size - 1];
 
-        if ((maxVal + minVal) % 2 == 0)
-            // cout << "-> 0 Fashionable " << " ";
+        if (maxVal % 2 == minVal % 2)
             cout << 0;
         else
         {
-            int firstToLast = 0;
-            int lastToFirst = 0;
-            // Check first to last
-            if (arr[0] % 2 == 0)
+            int i = 0, cnt1 = 0;
+            while (arr[i] % 2 != maxVal % 2)
             {
-                for (int i = 0; i < size; i++)
-                {
-                    if (arr[i] % 2 == 1 || i == size - 1)
-                        break;
-                    firstToLast++;
-                }
+                i++;
+                cnt1++;
             }
-            else if (arr[0] % 2 == 1)
+            int j = size - 1, cnt2 = 0;
+            while (arr[j] % 2 != minVal % 2)
             {
-                for (int i = 0; i < size; i++)
-                {
-                    if (arr[i] % 2 == 0 || i == size - 1)
-                        break;
-                    firstToLast++;
-                }
-            }
-            // Check last to first
-            if (arr[size - 1] % 2 == 0)
-            {
-                for (int i = size - 1; i >= 0; i--)
-                {
-                    if (arr[i] % 2 == 1 || i == 0)
-                        break;
-                    lastToFirst++;
-                }
-            }
-            else if (arr[size - 1] % 2 == 1)
-            {
-                for (int i = size - 1; i >= 0; i--)
-                {
-                    if (arr[i] % 2 == 0 || i == 0)
-                        break;
-                    lastToFirst++;
-                }
+                j--;
+                cnt2++;
             }
 
-            int numOfMinOperation = min(firstToLast, lastToFirst);
+            int numOfMinOperation = min(cnt1, cnt2);
             // cout << " " << firstToLast << " " << lastToFirst << " " << numOfMinOperation;
             cout << numOfMinOperation;
         }
