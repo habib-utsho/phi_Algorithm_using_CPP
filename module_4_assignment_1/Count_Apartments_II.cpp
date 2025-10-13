@@ -53,6 +53,7 @@ int main()
             {
                 roomCount.push_back(0);
                 // cout << i << " " << j << endl;
+                cout << " i: " << i << " J: " << j << " :" << visited[i][j] << " " << endl;
 
                 DFS(i, j, roomCount);
             }
